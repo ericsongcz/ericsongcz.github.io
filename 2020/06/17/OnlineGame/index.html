@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="EricSong">
+
+
+
+
+
+<title>机器人大作战 – UE4多人联网射击游戏 | EricSong Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">EricSong Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">所有文章</a>
+                
+                    <a class="menu-item" href="/category">分类</a>
+                
+                    <a class="menu-item" href="/tag">标签</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">EricSong Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">所有文章</a>
+                
+                    <a class="menu-item" href="/category">分类</a>
+                
+                    <a class="menu-item" href="/tag">标签</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">展开全部</a>
+        <a onclick="go_top()">返回顶部</a>
+        <a onclick="go_bottom()">返回底部</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "关闭全部"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "展开全部"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">机器人大作战 – UE4多人联网射击游戏</h1>
+            
+                <div class="post-meta">
+                    
+                        作者: <a itemprop="author" rel="author" href="/">EricSong</a>
+                    
+
+                    
+                        <span class="post-time">
+                        日期: <a href="#">June 17, 2020&nbsp;&nbsp;11:25:39</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    分类:
+                            
+                                <a href="/categories/Works/">Works</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="机器人大作战是大概18年初时候抽空做的一个小DEMO-，是一个可多人联网的TopDown视角机器人对战游戏，最多支持8人对战以及2V2-4V4的团队竞技，默认有5种不同类型的机器人，有专门治疗的医生机器人，有负责攻击的机器人，有提供护甲的机器人等等。主要是作为一个联网游戏，可进行个人竞技、团队竞技两个模式。"><a href="#机器人大作战是大概18年初时候抽空做的一个小DEMO-，是一个可多人联网的TopDown视角机器人对战游戏，最多支持8人对战以及2V2-4V4的团队竞技，默认有5种不同类型的机器人，有专门治疗的医生机器人，有负责攻击的机器人，有提供护甲的机器人等等。主要是作为一个联网游戏，可进行个人竞技、团队竞技两个模式。" class="headerlink" title="机器人大作战是大概18年初时候抽空做的一个小DEMO ，是一个可多人联网的TopDown视角机器人对战游戏，最多支持8人对战以及2V2-4V4的团队竞技，默认有5种不同类型的机器人，有专门治疗的医生机器人，有负责攻击的机器人，有提供护甲的机器人等等。主要是作为一个联网游戏，可进行个人竞技、团队竞技两个模式。"></a>机器人大作战是大概18年初时候抽空做的一个小DEMO ，是一个可多人联网的TopDown视角机器人对战游戏，最多支持8人对战以及2V2-4V4的团队竞技，默认有5种不同类型的机器人，有专门治疗的医生机器人，有负责攻击的机器人，有提供护甲的机器人等等。主要是作为一个联网游戏，可进行个人竞技、团队竞技两个模式。</h3><h3 id="游戏包括了一个完整的多人联网模式，玩家选择、队伍选择、游戏状态。"><a href="#游戏包括了一个完整的多人联网模式，玩家选择、队伍选择、游戏状态。" class="headerlink" title="游戏包括了一个完整的多人联网模式，玩家选择、队伍选择、游戏状态。"></a>游戏包括了一个完整的多人联网模式，玩家选择、队伍选择、游戏状态。</h3><h3 id="PS-YouTube视频，需要科学上网。"><a href="#PS-YouTube视频，需要科学上网。" class="headerlink" title="PS:YouTube视频，需要科学上网。"></a>PS:YouTube视频，需要科学上网。</h3><p><img src="/2020/06/17/OnlineGame/1.png" alt="OnlineGame"><br><img src="/2020/06/17/OnlineGame/2.png" alt="OnlineGame"><br><img src="/2020/06/17/OnlineGame/3.png" alt="OnlineGame"></p>
+<iframe width="780" height="439" src="https://www.youtube.com/embed/DvKUYMIr0wI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Game/"># Game</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">后退页面</a>
+                <span>· </span>
+                <a href="/">回到首页</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/06/17/BZY/">放松与专注 – 白噪音APP</a>
+            
+            
+            <a class="next" rel="next" href="/2020/06/17/TOPDOWN/">地球防御先锋 – TopDown射击游戏</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© EricSong | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/" target="_blank">Github</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
