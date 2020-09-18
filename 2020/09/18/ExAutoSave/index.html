@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="EricSong">
+
+
+
+
+
+<title>UE4 - ExAutoSave | EricSong Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">EricSong Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">所有文章</a>
+                
+                    <a class="menu-item" href="/category">分类</a>
+                
+                    <a class="menu-item" href="/tag">标签</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">EricSong Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; 菜单</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">所有文章</a>
+                
+                    <a class="menu-item" href="/category">分类</a>
+                
+                    <a class="menu-item" href="/tag">标签</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">展开全部</a>
+        <a onclick="go_top()">返回顶部</a>
+        <a onclick="go_bottom()">返回底部</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "关闭全部"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "展开全部"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">UE4 - ExAutoSave</h1>
+            
+                <div class="post-meta">
+                    
+                        作者: <a itemprop="author" rel="author" href="/">EricSong</a>
+                    
+
+                    
+                        <span class="post-time">
+                        日期: <a href="#">September 18, 2020&nbsp;&nbsp;16:19:08</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    分类:
+                            
+                                <a href="/categories/Plugins/">Plugins</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="使用自定义结构体、数组与SaveData的存档-读档"><a href="#使用自定义结构体、数组与SaveData的存档-读档" class="headerlink" title="使用自定义结构体、数组与SaveData的存档/读档"></a>使用自定义结构体、数组与SaveData的存档/读档</h3><h3 id="可以使用自定义的csv数据代替插件自带的结构体"><a href="#可以使用自定义的csv数据代替插件自带的结构体" class="headerlink" title="可以使用自定义的csv数据代替插件自带的结构体"></a>可以使用自定义的csv数据代替插件自带的结构体</h3><h3 id="可存储用于"><a href="#可存储用于" class="headerlink" title="可存储用于:"></a>可存储用于:</h3><h3 id="一个主的UObject-UObject-Array用来存储所有对象：关卡，角色，怪物，装备，天气，系统配置、UI等。"><a href="#一个主的UObject-UObject-Array用来存储所有对象：关卡，角色，怪物，装备，天气，系统配置、UI等。" class="headerlink" title="一个主的UObject|UObject Array用来存储所有对象：关卡，角色，怪物，装备，天气，系统配置、UI等。"></a>一个主的UObject|UObject Array用来存储所有对象：关卡，角色，怪物，装备，天气，系统配置、UI等。</h3><h3 id="每个单独的结构体，或者单独的变量，都可以用于存储自定义的任何数据类型。"><a href="#每个单独的结构体，或者单独的变量，都可以用于存储自定义的任何数据类型。" class="headerlink" title="每个单独的结构体，或者单独的变量，都可以用于存储自定义的任何数据类型。"></a>每个单独的结构体，或者单独的变量，都可以用于存储自定义的任何数据类型。</h3><p><img src="/2020/09/18/ExAutoSave/1.jpg" alt="ExAutoSave"></p>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/UE4/"># UE4</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">后退页面</a>
+                <span>· </span>
+                <a href="/">回到首页</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2020/06/17/GPBP/">UE4 – 增强的Gameplay函数库</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© EricSong | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/" target="_blank">Github</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
